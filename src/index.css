@@ -549,6 +549,8 @@ h1, h2, h3, h4 {
   padding: 2rem;
   z-index: 1;
   background-color: var(--color-surface-container-low);
+  /* Always visible underneath the scratch canvas */
+  opacity: 1;
 }
 
 .scale-up-bounce {
@@ -599,12 +601,11 @@ h1, h2, h3, h4 {
 /* Date Reveal Styling */
 .date-reveal {
   text-align: center;
-  opacity: 0;
-  transform: scale(0.8);
+  /* Always visible underneath scratch canvas */
 }
 
 .date-reveal-animate {
-  animation: dateRevealIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+  animation: dateRevealIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .date-reveal-label {
@@ -649,15 +650,14 @@ h1, h2, h3, h4 {
   }
 }
 
-/* Countdown Reveal Styling (appears after date) */
+/* Countdown Reveal Styling */
 .countdown-reveal {
   text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
+  /* Always visible underneath scratch canvas */
 }
 
 .countdown-reveal-animate {
-  animation: countdownSlideIn 0.6s ease-out 0.9s forwards;
+  animation: countdownSlideIn 0.5s ease-out 0.15s forwards;
 }
 
 .countdown-reveal-subtitle {
@@ -736,6 +736,122 @@ h1, h2, h3, h4 {
   gap: 2.5rem;
   margin-bottom: 6rem;
   width: 100%;
+}
+
+/* Ceremony Poster Card (full-bleed image with overlay) */
+.ceremony-poster-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: var(--shadow-ambient);
+  aspect-ratio: 9 / 16;
+}
+
+.ceremony-poster-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.ceremony-poster-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.55) 55%,
+    rgba(255, 255, 255, 0.88) 75%,
+    rgba(254, 253, 250, 0.97) 100%
+  );
+}
+
+.ceremony-poster-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.15rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ceremony-poster-title .material-symbols-outlined {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+}
+
+.ceremony-poster-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.ceremony-poster-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.ceremony-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ceremony-detail-row .material-symbols-outlined {
+  color: var(--color-secondary);
+  font-size: 1.15rem;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.ceremony-detail-label {
+  font-family: var(--font-label);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 1px;
+}
+
+.ceremony-detail-value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-on-surface);
+}
+
+.ceremony-detail-value-sub {
+  font-size: 0.82rem;
+  color: var(--color-secondary);
+}
+
+.ceremony-poster-btn {
+  margin-top: 1.25rem;
+  align-self: flex-start;
+}
+
+@media (max-width: 768px) {
+  .ceremony-poster-card {
+    max-width: 100%;
+  }
+  .ceremony-poster-overlay {
+    padding: 1.5rem 1.25rem;
+  }
 }
 
 .event-card {

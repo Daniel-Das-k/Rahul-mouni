@@ -692,43 +692,44 @@ function DetailsPage() {
 
           {/* EVENTS STACK (VERTICAL) */}
           <section className="events-section">
-            {/* Wedding Ceremony */}
-            <div className="event-card">
-              <div className="event-card-image-wrap">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz0Kc0cnz-3nf-onNYZPo70oReMEJQp8WEeIiyemrer6U2jRHnrdURsMglSi1MEKAAEoYTEvsxrKgMTFFrmRs_A3Obfp-b2GK5-KN4qvh2yZ4XONa4eO-6AUtIhzdJ2Qko2IYqTNF6adpRn-m2RjaNB0wpxLqgvGo9u49xYjremlfQi76AXxZx0ZRYq18GNrOgPvSBrGqTO39c1CAh1zmkjr0ReD69Ej95nukXfZjJ5VrVyO3-thN06rWp62ks2GjpSDsartz1ok4"
-                  alt="Wedding Ceremony Details"
-                  className="event-card-image"
-                />
-              </div>
-              <div className="event-card-content">
-                <div className="event-card-header">
+            {/* Wedding Ceremony - Poster Style */}
+            <div className="ceremony-poster-card">
+              <img
+                src="/assets/images/ceremony_bg.jpg"
+                alt="Wedding Ceremony"
+                className="ceremony-poster-bg"
+              />
+              <div className="ceremony-poster-overlay">
+                <h3 className="ceremony-poster-title">
                   <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
                     church
                   </span>
-                  <h3>The Wedding Ceremony</h3>
-                </div>
-                <div className="event-info-rows">
-                  <div className="event-info-row">
+                  The Wedding Ceremony
+                </h3>
+                <p className="ceremony-poster-subtitle">Holy Matrimony &amp; Blessings</p>
+                
+                <div className="ceremony-poster-details">
+                  <div className="ceremony-detail-row">
                     <span className="material-symbols-outlined">calendar_today</span>
                     <div>
-                      <p className="info-label">Date & Time</p>
-                      <p className="info-value info-value-bold">June 18th, 2026</p>
-                      <p className="info-value">At 6:00 PM IST</p>
+                      <p className="ceremony-detail-label">Date &amp; Time</p>
+                      <p className="ceremony-detail-value">June 18th, 2026</p>
+                      <p className="ceremony-detail-value-sub">At 6:00 PM IST</p>
                     </div>
                   </div>
-                  <div className="event-info-row">
+                  <div className="ceremony-detail-row">
                     <span className="material-symbols-outlined">location_on</span>
                     <div>
-                      <p className="info-label">Venue</p>
-                      <p className="info-value info-value-bold">GEC - St. Paul's Church (First Floor)</p>
-                      <p className="info-value">
+                      <p className="ceremony-detail-label">Venue</p>
+                      <p className="ceremony-detail-value">GEC - St. Paul's Church (First Floor)</p>
+                      <p className="ceremony-detail-value-sub">
                         No.20, Padar Salai Street, Kambar Nagar, Vanagaram, Adayalampattu, Chennai - 600 095.
                       </p>
                     </div>
                   </div>
                 </div>
-                <button className="btn-primary" onClick={() => window.open("https://maps.app.goo.gl/r2YzeQpWP4gUVUte6?g_st=ic", "_blank")}>
+
+                <button className="btn-primary ceremony-poster-btn" onClick={() => window.open("https://maps.app.goo.gl/r2YzeQpWP4gUVUte6?g_st=ic", "_blank")}>
                   Get Directions
                   <span className="material-symbols-outlined text-[14px]">open_in_new</span>
                 </button>
