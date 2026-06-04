@@ -454,6 +454,31 @@ h1, h2, h3, h4 {
   aspect-ratio: auto;
 }
 
+/* Reception-specific: white fade at top for text readability */
+.reception-poster-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.45) 20%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* RSVP Section */
+.scroll-section-rsvp {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-surface);
+}
+
 /* ==========================================
    Phase 2: Cinematic Video Stage
    ========================================== */

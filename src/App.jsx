@@ -749,7 +749,7 @@ function DetailsPage() {
             alt="Wedding Reception"
             className="ceremony-poster-bg"
           />
-          <div className="ceremony-poster-overlay">
+          <div className="ceremony-poster-overlay reception-poster-overlay">
             <h3 className="ceremony-poster-title">
               <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
                 celebration
@@ -777,17 +777,39 @@ function DetailsPage() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-              <button className="btn-primary ceremony-poster-btn" style={{ margin: 0 }} onClick={() => window.open("https://maps.app.goo.gl/Kpw2ewuFuzC5MULX9?g_st=ic", "_blank")}>
-                Get Directions
-                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-              </button>
-              <button className="btn-primary ceremony-poster-btn" style={{ margin: 0, background: 'var(--color-secondary)' }} onClick={() => setRsvpOpen(true)}>
-                RSVP Now
-                <span className="material-symbols-outlined text-[14px]">mail</span>
+            <button className="btn-primary ceremony-poster-btn" onClick={() => window.open("https://maps.app.goo.gl/Kpw2ewuFuzC5MULX9?g_st=ic", "_blank")}>
+              Get Directions
+              <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SECTION 6: RSVP + Footer ===== */}
+      <section className="scroll-section scroll-section-rsvp">
+        <div className="details-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', gap: '2rem', padding: '3rem 1.5rem' }}>
+          <section className="rsvp-trigger-section">
+            <p className="script-italic" style={{ fontSize: '1.8rem', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>We'd Love to See You</p>
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-secondary)', marginBottom: '2rem', textAlign: 'center' }}>Please let us know if you can make it to celebrate with us</p>
+            <div className="rsvp-cta-border">
+              <button className="btn-rsvp-launch" onClick={() => setRsvpOpen(true)}>
+                Confirm Your RSVP
+                <span className="material-symbols-outlined">mail</span>
               </button>
             </div>
-          </div>
+          </section>
+
+          <footer className="compliments-footer" style={{ marginTop: '2rem' }}>
+            <h2>With Blessings</h2>
+            <p className="footer-compliments-text">
+              With Blessings & Compliments from the Komarapu & Vankara Families.
+            </p>
+            <div className="footer-dots">
+              <div className="footer-dot"></div>
+              <div className="footer-dot"></div>
+              <div className="footer-dot"></div>
+            </div>
+          </footer>
         </div>
       </section>
 
