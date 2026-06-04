@@ -911,18 +911,6 @@ function DetailsPage() {
           </div>
         </dialog>
 
-        {/* FLOATING GALLERY TRIGGER (Peeking photos in bottom right) */}
-        <div className="floating-gallery-trigger" onClick={() => setGalleryOpen(true)} title="View Photo Gallery">
-          <div className="gallery-stack-card">
-            <img src={galleryImages[0]} alt="Gallery preview 1" />
-          </div>
-          <div className="gallery-stack-card">
-            <img src={galleryImages[1]} alt="Gallery preview 2" />
-          </div>
-          <div className="gallery-stack-card">
-            <img src={galleryImages[2]} alt="Gallery preview 3" />
-          </div>
-        </div>
 
         {/* FULLSCREEN GALLERY CAROUSEL MODAL (Option 3: 3D Stacked Card Deck) */}
         <dialog
