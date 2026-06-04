@@ -476,7 +476,7 @@ function DetailsPage() {
   return (
     <div ref={scrollContainerRef} className="scroll-container">
 
-      {/* SECTION 2: Fullscreen Invitation Poster */}
+      {/* ===== SECTION 1: Fullscreen Invitation Poster ===== */}
       <section className="scroll-section poster-scroll-section" style={{ background: 'radial-gradient(circle, #ffffff 0%, #f7f3ec 100%)' }}>
         <div className="video-stage">
           <div className="video-container">
@@ -490,12 +490,11 @@ function DetailsPage() {
         </div>
       </section>
 
-      {/* SECTION 3: Remaining Details Section (Regular scroll snapping start, internal free scroll) */}
-      <section className="scroll-section-details">
-        <main className="details-wrapper">
-          
+      {/* ===== SECTION 2: Save the Date + Bible Verse ===== */}
+      <section className="scroll-section scroll-section-freeflow">
+        <div className="details-wrapper" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
           {/* COUNTDOWN TIMER SECTION */}
-          <section className="interactive-section" style={{ marginTop: '2rem' }}>
+          <section className="interactive-section" style={{ marginTop: '0' }}>
             <p className="label-caps mb-6">Something Special Awaits</p>
             
             <div className="scratch-card-relative">
@@ -558,11 +557,16 @@ function DetailsPage() {
               format_quote
             </span>
             <blockquote className="scripture-quote">
-              “I have found the one whom my soul loves.”
+              "I have found the one whom my soul loves."
             </blockquote>
             <cite className="scripture-citation">— Song of Solomon 3:4</cite>
           </section>
+        </div>
+      </section>
 
+      {/* ===== SECTION 3: Photo Gallery ===== */}
+      <section className="scroll-section scroll-section-freeflow">
+        <div className="details-wrapper" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
           {/* PHOTO GALLERY (Option 3 combined with Option 2) */}
           {inlineActiveIndex < 4 ? (
             /* PHOTO GALLERY (Option 3: 3D Stacked Card Deck Inline) */
@@ -580,7 +584,6 @@ function DetailsPage() {
                   let cardClass = "deck-card";
                   
                   if (index < inlineActiveIndex) {
-                    // Toss off in alternating directions
                     cardClass += index % 2 === 0 ? " swiped-left" : " swiped-right";
                   } else if (index === inlineActiveIndex) {
                     cardClass += " stack-depth-0";
@@ -689,124 +692,111 @@ function DetailsPage() {
               </div>
             </section>
           )}
+        </div>
+      </section>
 
-          {/* EVENTS STACK (VERTICAL) */}
-          <section className="events-section">
-            {/* Wedding Ceremony - Poster Style */}
-            <div className="ceremony-poster-card">
-              <img
-                src="/assets/images/ceremony_bg.jpg"
-                alt="Wedding Ceremony"
-                className="ceremony-poster-bg"
-              />
-              <div className="ceremony-poster-overlay">
-                <h3 className="ceremony-poster-title">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    church
-                  </span>
-                  The Wedding Ceremony
-                </h3>
-                <p className="ceremony-poster-subtitle">Holy Matrimony &amp; Blessings</p>
-                
-                <div className="ceremony-poster-details">
-                  <div className="ceremony-detail-row">
-                    <span className="material-symbols-outlined">calendar_today</span>
-                    <div>
-                      <p className="ceremony-detail-label">Date &amp; Time</p>
-                      <p className="ceremony-detail-value">June 18th, 2026</p>
-                      <p className="ceremony-detail-value-sub">At 6:00 PM IST</p>
-                    </div>
-                  </div>
-                  <div className="ceremony-detail-row">
-                    <span className="material-symbols-outlined">location_on</span>
-                    <div>
-                      <p className="ceremony-detail-label">Venue</p>
-                      <p className="ceremony-detail-value">GEC - St. Paul's Church (First Floor)</p>
-                      <p className="ceremony-detail-value-sub">
-                        No.20, Padar Salai Street, Kambar Nagar, Vanagaram, Adayalampattu, Chennai - 600 095.
-                      </p>
-                    </div>
-                  </div>
+      {/* ===== SECTION 4: Wedding Ceremony ===== */}
+      <section className="scroll-section scroll-section-event">
+        <div className="ceremony-poster-card ceremony-poster-fullscreen">
+          <img
+            src="/assets/images/ceremony_bg.jpg"
+            alt="Wedding Ceremony"
+            className="ceremony-poster-bg"
+          />
+          <div className="ceremony-poster-overlay">
+            <h3 className="ceremony-poster-title">
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
+                church
+              </span>
+              The Wedding Ceremony
+            </h3>
+            <p className="ceremony-poster-subtitle">Holy Matrimony &amp; Blessings</p>
+            
+            <div className="ceremony-poster-details">
+              <div className="ceremony-detail-row">
+                <span className="material-symbols-outlined">calendar_today</span>
+                <div>
+                  <p className="ceremony-detail-label">Date &amp; Time</p>
+                  <p className="ceremony-detail-value">June 18th, 2026</p>
+                  <p className="ceremony-detail-value-sub">At 6:00 PM IST</p>
                 </div>
-
-                <button className="btn-primary ceremony-poster-btn" onClick={() => window.open("https://maps.app.goo.gl/r2YzeQpWP4gUVUte6?g_st=ic", "_blank")}>
-                  Get Directions
-                  <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-                </button>
+              </div>
+              <div className="ceremony-detail-row">
+                <span className="material-symbols-outlined">location_on</span>
+                <div>
+                  <p className="ceremony-detail-label">Venue</p>
+                  <p className="ceremony-detail-value">GEC - St. Paul's Church (First Floor)</p>
+                  <p className="ceremony-detail-value-sub">
+                    No.20, Padar Salai Street, Kambar Nagar, Vanagaram, Adayalampattu, Chennai - 600 095.
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* Reception */}
-            <div className="event-card">
-              <div className="event-card-image-wrap">
-                <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh8WQaa-13QPu8sG4nYMAWCRXjdzdydi8-2ntqlB4UExvbLCiuyYgrIepZl7lk7fVS3-Ree9INFMjNHhpPCyEDrc04fBRmebCTZzGVj847kIKhDysMvVFdAhLQKg57fDCDtRCUtRm-wjGgAfTkCHPj0nd8RS9lgbjSbGF1C9a_KszDVPBqmmG1dRBIzG4LnQq-AWXXsplHvg4nGxpy09gqakW1CwUKFvF4rkz75cPa1pMB7J_ufn5smQvlREHsG2zl1-96hFDZtIw"
-                  alt="Reception Details"
-                  className="event-card-image"
-                />
+            <button className="btn-primary ceremony-poster-btn" onClick={() => window.open("https://maps.app.goo.gl/r2YzeQpWP4gUVUte6?g_st=ic", "_blank")}>
+              Get Directions
+              <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SECTION 5: Reception + RSVP + Footer ===== */}
+      <section className="scroll-section scroll-section-event">
+        <div className="ceremony-poster-card ceremony-poster-fullscreen">
+          <img
+            src="/assets/images/reception_bg.jpg"
+            alt="Wedding Reception"
+            className="ceremony-poster-bg"
+          />
+          <div className="ceremony-poster-overlay">
+            <h3 className="ceremony-poster-title">
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
+                celebration
+              </span>
+              The Reception
+            </h3>
+            <p className="ceremony-poster-subtitle">An Evening of Joy &amp; Celebration</p>
+            
+            <div className="ceremony-poster-details">
+              <div className="ceremony-detail-row">
+                <span className="material-symbols-outlined">event</span>
+                <div>
+                  <p className="ceremony-detail-label">Date &amp; Time</p>
+                  <p className="ceremony-detail-value">June 23rd, 2026</p>
+                  <p className="ceremony-detail-value-sub">At 6:00 PM IST</p>
+                </div>
               </div>
-              <div className="event-card-content">
-                <div className="event-card-header">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    celebration
-                  </span>
-                  <h3>The Reception</h3>
+              <div className="ceremony-detail-row">
+                <span className="material-symbols-outlined">pin_drop</span>
+                <div>
+                  <p className="ceremony-detail-label">Location</p>
+                  <p className="ceremony-detail-value">Golden Jubilee Hall</p>
+                  <p className="ceremony-detail-value-sub">Calvary Baptist Church, Vishakapatnam</p>
                 </div>
-                <div className="event-info-rows">
-                  <div className="event-info-row">
-                    <span className="material-symbols-outlined">event</span>
-                    <div>
-                      <p className="info-label">Date & Time</p>
-                      <p className="info-value info-value-bold">June 23rd, 2026</p>
-                      <p className="info-value">At 6:00 PM IST</p>
-                    </div>
-                  </div>
-                  <div className="event-info-row">
-                    <span className="material-symbols-outlined">pin_drop</span>
-                    <div>
-                      <p className="info-label">Location</p>
-                      <p className="info-value info-value-bold">Golden Jubilee Hall, Calvary Baptist Church, Vishakapatnam</p>
-                    </div>
-                  </div>
-                </div>
-                <button className="btn-secondary" onClick={() => window.open("https://maps.app.goo.gl/Kpw2ewuFuzC5MULX9?g_st=ic", "_blank")}>
-                  View Location
-                  <span className="material-symbols-outlined text-[14px]">open_in_new</span>
-                </button>
               </div>
             </div>
-          </section>
 
-          {/* RSVP BUTTON */}
-          <section className="rsvp-trigger-section">
-            <div className="rsvp-cta-border">
-              <button className="btn-rsvp-launch" onClick={() => setRsvpOpen(true)}>
-                Confirm Your RSVP
-                <span className="material-symbols-outlined">mail</span>
+            <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <button className="btn-primary ceremony-poster-btn" style={{ margin: 0 }} onClick={() => window.open("https://maps.app.goo.gl/Kpw2ewuFuzC5MULX9?g_st=ic", "_blank")}>
+                Get Directions
+                <span className="material-symbols-outlined text-[14px]">open_in_new</span>
+              </button>
+              <button className="btn-primary ceremony-poster-btn" style={{ margin: 0, background: 'var(--color-secondary)' }} onClick={() => setRsvpOpen(true)}>
+                RSVP Now
+                <span className="material-symbols-outlined text-[14px]">mail</span>
               </button>
             </div>
-          </section>
-        </main>
-
-        {/* FOOTER */}
-        <footer className="compliments-footer">
-          <h2>With Blessings</h2>
-          <p className="footer-compliments-text">
-            With Blessings & Compliments from the Komarapu & Vankara Families.
-          </p>
-          <div className="footer-dots">
-            <div className="footer-dot"></div>
-            <div className="footer-dot"></div>
-            <div className="footer-dot"></div>
           </div>
-        </footer>
+        </div>
+      </section>
 
-        {/* RSVP DIALOG MODAL */}
-        <dialog
-          ref={rsvpDialogRef}
-          className="rsvp-dialog"
-          onClick={handleDialogBackdropClick}
-        >
+      {/* RSVP DIALOG MODAL */}
+      <dialog
+        ref={rsvpDialogRef}
+        className="rsvp-dialog"
+        onClick={handleDialogBackdropClick}
+      >
           <div className="rsvp-modal-content">
             <button className="rsvp-modal-close-btn" onClick={() => setRsvpOpen(false)}>
               <span className="material-symbols-outlined">close</span>
@@ -990,7 +980,6 @@ function DetailsPage() {
             </div>
           </div>
         </dialog>
-      </section>
     </div>
   );
 }

@@ -417,6 +417,43 @@ h1, h2, h3, h4 {
   background-color: var(--color-surface);
 }
 
+/* Freeflow section - scroll snap but allows internal scroll */
+.scroll-section-freeflow {
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-surface);
+}
+
+/* Event poster section - fullscreen image cards */
+.scroll-section-event {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.ceremony-poster-fullscreen {
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  aspect-ratio: auto;
+}
+
 /* ==========================================
    Phase 2: Cinematic Video Stage
    ========================================== */
