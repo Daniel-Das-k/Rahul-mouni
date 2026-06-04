@@ -507,31 +507,40 @@ function DetailsPage() {
                   </div>
                 ) : (
                   <>
-                    <p className="script-italic text-2xl text-[#7a5642] mb-1">Until We Say I Do</p>
-                    <p className="label-caps text-[12px] tracking-widest font-semibold" style={{ color: 'var(--color-secondary)' }}>JUNE 18, 2026</p>
+                    {/* Date reveal - appears first */}
+                    <div className={`date-reveal ${isCountdownUnveiled ? 'date-reveal-animate' : ''}`}>
+                      <p className="script-italic date-reveal-label">Save the Date</p>
+                      <h2 className="date-reveal-main">18<sup>th</sup> June</h2>
+                      <p className="date-reveal-year">2026</p>
+                    </div>
+
+                    <div className="timer-divider" style={{ margin: '1.2rem 0' }}></div>
                     
-                    <div className="timer-divider" style={{ margin: '1rem 0 1.5rem' }}></div>
-                    
-                    <div className="timer-grid">
-                      <div className="timer-item">
-                        <span className="timer-value">{String(timeLeft.days).padStart(2, '0')}</span>
-                        <span className="timer-label">DAYS</span>
-                      </div>
-                      <div className="timer-item">
-                        <span className="timer-value">{String(timeLeft.hours).padStart(2, '0')}</span>
-                        <span className="timer-label">HOURS</span>
-                      </div>
-                      <div className="timer-item">
-                        <span className="timer-value">{String(timeLeft.minutes).padStart(2, '0')}</span>
-                        <span className="timer-label">MINS</span>
-                      </div>
-                      <div className="timer-item">
-                        <span className="timer-value">{String(timeLeft.seconds).padStart(2, '0')}</span>
-                        <span className="timer-label">SECS</span>
+                    {/* Countdown - appears after date */}
+                    <div className={`countdown-reveal ${isCountdownUnveiled ? 'countdown-reveal-animate' : ''}`}>
+                      <p className="countdown-reveal-subtitle">Counting down to forever</p>
+                      <div className="timer-grid">
+                        <div className="timer-item">
+                          <span className="timer-value">{String(timeLeft.days).padStart(2, '0')}</span>
+                          <span className="timer-label">DAYS</span>
+                        </div>
+                        <div className="timer-item">
+                          <span className="timer-value">{String(timeLeft.hours).padStart(2, '0')}</span>
+                          <span className="timer-label">HOURS</span>
+                        </div>
+                        <div className="timer-item">
+                          <span className="timer-value">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                          <span className="timer-label">MINS</span>
+                        </div>
+                        <div className="timer-item">
+                          <span className="timer-value">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                          <span className="timer-label">SECS</span>
+                        </div>
                       </div>
                     </div>
                   </>
                 )}
+
               </div>
 
               {!canvasRemoved && (
