@@ -745,7 +745,7 @@ function DetailsPage() {
       <section className="scroll-section scroll-section-event">
         <div className="ceremony-poster-card ceremony-poster-fullscreen">
           <img
-            src="/assets/images/reception_bg.jpg"
+            src="/assets/images/reception_bg.png"
             alt="Wedding Reception"
             className="ceremony-poster-bg"
           />
