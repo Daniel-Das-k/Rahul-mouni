@@ -261,36 +261,55 @@ function DetailsPage() {
     }
     const audio = window._weddingAudio;
 
+    const handlePlay = () => setIsMusicPlaying(true);
+    const handlePause = () => setIsMusicPlaying(false);
+
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
+
+    // Sync initial state
+    setIsMusicPlaying(!audio.paused);
+
     // Check if user had music playing before refresh
     const musicWasPlaying = localStorage.getItem('wedding_music_playing') !== 'false';
-    setIsMusicPlaying(musicWasPlaying);
 
     if (musicWasPlaying && audio.paused) {
       // Try immediately (works if browser allows it)
       audio.play().catch(() => {
         // Browser blocked autoplay — resume silently on very next interaction
-        const resumeOnce = () => {
+        const resumeOnce = (e) => {
+          // If they clicked the toggle button, let the toggle handle it
+          if (e.target && e.target.closest('#music-toggle-btn')) {
+            cleanup();
+            return;
+          }
           audio.play().catch(() => {});
+          cleanup();
+        };
+        const cleanup = () => {
           document.removeEventListener('click', resumeOnce);
           document.removeEventListener('touchstart', resumeOnce);
         };
-        document.addEventListener('click', resumeOnce, { once: true });
-        document.addEventListener('touchstart', resumeOnce, { once: true });
+        document.addEventListener('click', resumeOnce);
+        document.addEventListener('touchstart', resumeOnce);
       });
     }
+
+    return () => {
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+    };
   }, []);
 
   const toggleMusic = () => {
     const audio = window._weddingAudio;
     if (!audio) return;
-    if (isMusicPlaying) {
-      audio.pause();
-      setIsMusicPlaying(false);
-      localStorage.setItem('wedding_music_playing', 'false');
-    } else {
+    if (audio.paused) {
       audio.play().catch(() => {});
-      setIsMusicPlaying(true);
       localStorage.setItem('wedding_music_playing', 'true');
+    } else {
+      audio.pause();
+      localStorage.setItem('wedding_music_playing', 'false');
     }
   };
 
@@ -533,6 +552,7 @@ function DetailsPage() {
 
       {/* Floating Music Toggle */}
       <button
+        id="music-toggle-btn"
         onClick={toggleMusic}
         title={isMusicPlaying ? 'Pause music' : 'Play music'}
         style={{
