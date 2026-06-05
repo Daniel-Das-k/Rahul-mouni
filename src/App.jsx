@@ -110,7 +110,7 @@ function CoverPage() {
     if (!window._weddingAudio) {
       window._weddingAudio = new Audio('/assets/wedding_music.m4a');
       window._weddingAudio.loop = true;
-      window._weddingAudio.volume = 0.5;
+      window._weddingAudio.volume = 0.2;
     }
     window._weddingAudio.play().catch(() => {});
 
