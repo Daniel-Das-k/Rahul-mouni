@@ -217,7 +217,9 @@ function DetailsPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   // Music states (audio lives on window._weddingAudio, started from CoverPage)
-  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(() => {
+    return localStorage.getItem('wedding_music_playing') !== 'false';
+  });
 
   const canvasRef = useRef(null);
   const rsvpDialogRef = useRef(null);
@@ -267,8 +269,10 @@ function DetailsPage() {
     audio.addEventListener('play', handlePlay);
     audio.addEventListener('pause', handlePause);
 
-    // Sync initial state
-    setIsMusicPlaying(!audio.paused);
+    // Sync initial state (only if actually playing, otherwise keep user preference)
+    if (!audio.paused) {
+      setIsMusicPlaying(true);
+    }
 
     // Check if user had music playing before refresh
     const musicWasPlaying = localStorage.getItem('wedding_music_playing') !== 'false';
