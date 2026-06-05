@@ -112,6 +112,7 @@ function CoverPage() {
       window._weddingAudio.loop = true;
       window._weddingAudio.volume = 0.2;
     }
+    localStorage.setItem('wedding_music_playing', 'true');
     window._weddingAudio.play().catch(() => {});
 
     const tl = gsap.timeline();
@@ -250,11 +251,32 @@ function DetailsPage() {
     }
   }, [galleryOpen]);
 
-  // Sync music state with global audio on mount
+  // Initialize audio and resume after refresh
   useEffect(() => {
+    // Re-create audio object if wiped by refresh
+    if (!window._weddingAudio) {
+      window._weddingAudio = new Audio('/assets/wedding_music.m4a');
+      window._weddingAudio.loop = true;
+      window._weddingAudio.volume = 0.2;
+    }
     const audio = window._weddingAudio;
-    if (audio) {
-      setIsMusicPlaying(!audio.paused);
+
+    // Check if user had music playing before refresh
+    const musicWasPlaying = localStorage.getItem('wedding_music_playing') !== 'false';
+    setIsMusicPlaying(musicWasPlaying);
+
+    if (musicWasPlaying && audio.paused) {
+      // Try immediately (works if browser allows it)
+      audio.play().catch(() => {
+        // Browser blocked autoplay — resume silently on very next interaction
+        const resumeOnce = () => {
+          audio.play().catch(() => {});
+          document.removeEventListener('click', resumeOnce);
+          document.removeEventListener('touchstart', resumeOnce);
+        };
+        document.addEventListener('click', resumeOnce, { once: true });
+        document.addEventListener('touchstart', resumeOnce, { once: true });
+      });
     }
   }, []);
 
@@ -264,9 +286,11 @@ function DetailsPage() {
     if (isMusicPlaying) {
       audio.pause();
       setIsMusicPlaying(false);
+      localStorage.setItem('wedding_music_playing', 'false');
     } else {
-      audio.play();
+      audio.play().catch(() => {});
       setIsMusicPlaying(true);
+      localStorage.setItem('wedding_music_playing', 'true');
     }
   };
 
