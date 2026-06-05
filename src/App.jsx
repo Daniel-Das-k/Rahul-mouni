@@ -106,6 +106,14 @@ function CoverPage() {
       colors: ['#dcae96', '#7a5642', '#faf9f6', '#d4af37']
     });
 
+    // Start wedding music on envelope click (persists across navigation)
+    if (!window._weddingAudio) {
+      window._weddingAudio = new Audio('/assets/wedding_music.m4a');
+      window._weddingAudio.loop = true;
+      window._weddingAudio.volume = 0.5;
+    }
+    window._weddingAudio.play().catch(() => {});
+
     const tl = gsap.timeline();
 
     // A. Zoom envelope slightly
@@ -207,6 +215,9 @@ function DetailsPage() {
   const [wishes, setWishes] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  // Music states (audio lives on window._weddingAudio, started from CoverPage)
+  const [isMusicPlaying, setIsMusicPlaying] = useState(true);
+
   const canvasRef = useRef(null);
   const rsvpDialogRef = useRef(null);
   const scrollContainerRef = useRef(null);
@@ -238,6 +249,26 @@ function DetailsPage() {
       dialog.close();
     }
   }, [galleryOpen]);
+
+  // Sync music state with global audio on mount
+  useEffect(() => {
+    const audio = window._weddingAudio;
+    if (audio) {
+      setIsMusicPlaying(!audio.paused);
+    }
+  }, []);
+
+  const toggleMusic = () => {
+    const audio = window._weddingAudio;
+    if (!audio) return;
+    if (isMusicPlaying) {
+      audio.pause();
+      setIsMusicPlaying(false);
+    } else {
+      audio.play();
+      setIsMusicPlaying(true);
+    }
+  };
 
   const handleGalleryBackdropClick = (e) => {
     if (e.target === galleryDialogRef.current) {
@@ -475,6 +506,38 @@ function DetailsPage() {
 
   return (
     <div ref={scrollContainerRef} className="scroll-container">
+
+      {/* Floating Music Toggle */}
+      <button
+        onClick={toggleMusic}
+        title={isMusicPlaying ? 'Pause music' : 'Play music'}
+        style={{
+          position: 'fixed',
+          bottom: '1.5rem',
+          right: '1.5rem',
+          zIndex: 9999,
+          width: '3rem',
+          height: '3rem',
+          borderRadius: '50%',
+          border: 'none',
+          background: 'rgba(122, 86, 66, 0.85)',
+          backdropFilter: 'blur(8px)',
+          color: '#fff',
+          fontSize: '1.35rem',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 4px 18px rgba(0,0,0,0.25)',
+          transition: 'transform 0.2s, background 0.2s',
+        }}
+        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.12)'}
+        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+      >
+        <span className="material-symbols-outlined" style={{ fontSize: '1.35rem' }}>
+          {isMusicPlaying ? 'music_note' : 'music_off'}
+        </span>
+      </button>
 
       {/* ===== SECTION 1: Fullscreen Invitation Poster ===== */}
       <section className="scroll-section poster-scroll-section" style={{ background: 'radial-gradient(circle, #ffffff 0%, #f7f3ec 100%)' }}>
